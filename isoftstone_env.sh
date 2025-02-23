@@ -70,16 +70,16 @@ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scop
 
 echo 'set tags+=~/.vim/systags' >> ~/.vimrc
 
-# 文件直接覆盖
-if [[ `uname -m` ==  x86* ]];then
-    echo "这个是x86架构"
-    wget wiki.haizeix.com/courses_resource/cloud_usage/kkb_check_ubuntu_18.04 -O isoftstone_check
-else 
-    echo "这个是arm架构"	
-    wget wiki.haizeix.com/courses_resource/cloud_usage/kkb_check_ubuntu_18.04_arm -O isoftstone_check
-fi
-chmod a+x isoftstone_check
-sudo mv isoftstone_check /usr/bin
+# # 文件直接覆盖
+# if [[ `uname -m` ==  x86* ]];then
+#     echo "这个是x86架构"
+#     wget wiki.haizeix.com/courses_resource/cloud_usage/kkb_check_ubuntu_18.04 -O isoftstone_check
+# else 
+#     echo "这个是arm架构"	
+#     wget wiki.haizeix.com/courses_resource/cloud_usage/kkb_check_ubuntu_18.04_arm -O isoftstone_check
+# fi
+# chmod a+x isoftstone_check
+# sudo mv isoftstone_check /usr/bin
 
 # sudo cd ~
 rm isoftstone_env_log
