@@ -41,7 +41,7 @@ apt update
 echo "即将安装依赖软件"
 apt install -y git zsh gcc g++ glibc-doc autojump universal-ctags
 echo "即将下载环境配置脚本"
-wget wiki.haizeix.com/courses_resource/cloud_usage/isoftstone_env.sh
+wget https://gitee.com/zhang-sichen/linux-script/blob/master/isoftstone_env.sh
 
 regex="^[a-zA-Z]+$"
 while [[ 1 ]];do
@@ -177,5 +177,5 @@ rm ./init_env.sh
 rm ./isoftstone_env.sh
 echo "Linux系统配置已完成, 请使用新账户登录系统"
 echo "--------------------------------------"
-echo -e "你的用户名${BLUE}${username}${RESET},密码为${GREEN}${USER_PASSWD}${RESET}\n"
+echo -e "你的用户名${BLUE}${username}${RESET}\n密码为${GREEN}${USER_PASSWD}${RESET}\n"
 su - ${username}

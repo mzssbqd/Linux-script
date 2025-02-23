@@ -75,11 +75,9 @@ setup_color() {
 }
 
 setup_ohmyzsh() {
-	# Prevent the cloned repository from having insecure permissions. Failing to do
-	# so causes compinit() calls to fail with "command not found: compdef" errors
-	# for users with insecure umasks (e.g., "002", allowing group writability). Note
-	# that this will be ignored under Cygwin by default, as Windows ACLs take
-	# precedence over umasks except for filesystems mounted with option "noacl".
+	# 防止克隆的存储库具有不安全的权限。未能做到这一点会导致 compinit() 调用失败，
+	# 并出现 "command not found: compdef" 错误，因为用户的 umask 不安全（例如 "002"，允许组写权限）。
+	# 请注意，在 Cygwin 下默认情况下会忽略这一点，因为 Windows ACL 优先于 umask，除非文件系统挂载时使用 "noacl" 选项。
 	umask g-w,o-w
 
 	echo "${BLUE}Cloning Oh My Zsh...${RESET}"

@@ -31,7 +31,7 @@ else
     echo "install_vim.sh 文件已存在,删除中" >> isoftstone_env_log
     rm -f /home/$new_user/install_vim.sh*
 fi
-wget wiki.haizeix.com/courses_resource/cloud_usage/install_vim.sh
+wget https://gitee.com/zhang-sichen/linux-script/blob/master/install_vim.sh
 bash install_vim.sh
 echo "配置vim成功\n" >> isoftstone_env_log
 
@@ -44,21 +44,18 @@ else
     rm -f  /home/$new_user/install_zsh.sh*
 fi
 
-wget wiki.haizeix.com/courses_resource/cloud_usage/install_zsh.sh
+wget https://gitee.com/zhang-sichen/linux-script/blob/master/install_zsh.sh
 bash install_zsh.sh ${PASSWD}
 
 git clone https://gitee.com/song_df/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
 # 替换文件中的内容
 sed -i 's/plugins=(git)/plugins=(git zsh-syntax-highlighting)/' ~/.zshrc
 echo "配置zsh成功,内容替换完成">> isoftstone_env_log
-#vim ~/.zshrc
-# 使用命令`vim ~/.zshrc`打开.zshrc文件，找到`plugins=()`这一行，将zsh-syntax-highlighting添加进去
-#plugins=(git zsh-syntax-highlighting)
 
 #命令自动补全插件
 echo "自动补全插件配置\n">> isoftstone_env_log
 mkdir ~/.oh-my-zsh/plugins/incr
-wget wiki.haizeix.com/courses_resource/cloud_usage/incr-0.2.zsh -O ~/.oh-my-zsh/plugins/incr/incr.plugin.zsh
+wget https://gitee.com/zhang-sichen/linux-script/blob/master/incr-0.2.zsh -O ~/.oh-my-zsh/plugins/incr/incr.plugin.zsh
 echo "自动补全插件完成\n" >> isoftstone_env_log
 
 ##目录自动跳转插件
@@ -73,7 +70,6 @@ ctags -I __THROW -I __attribute_pure__ -I __nonnull -I __attribute__ --file-scop
 
 echo 'set tags+=~/.vim/systags' >> ~/.vimrc
 
-# 文件直接覆盖
 # 文件直接覆盖
 if [[ `uname -m` ==  x86* ]];then
     echo "这个是x86架构"
