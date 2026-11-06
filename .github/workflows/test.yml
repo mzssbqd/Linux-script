@@ -1,0 +1,39 @@
+name: Shell checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install test tools on Ubuntu
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck shfmt bats zsh
+      - name: Install test tools on macOS
+        if: runner.os == 'macOS'
+        run: brew install shellcheck shfmt bats-core
+      - name: Check Bash and Zsh syntax
+        run: |
+          for file in bootstrap.sh src/lib/*.sh src/platforms/*.sh src/modules/*.sh; do
+            /bin/bash -n "$file"
+          done
+          for file in config/zsh/*.zsh; do zsh -n "$file"; done
+      - name: ShellCheck
+        run: shellcheck -x bootstrap.sh src/lib/*.sh src/platforms/*.sh src/modules/*.sh tests/helpers.bash tests/fixtures/*.sh
+      - name: Format
+        run: |
+          shfmt -d -i 4 -ci bootstrap.sh src tests/helpers.bash tests/fixtures
+          shfmt -d -i 4 -ci -ln bats tests/*.bats
+      - name: Offline behavior tests
+        run: /bin/bash "$(command -v bats)" tests
