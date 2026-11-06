@@ -27,6 +27,7 @@ setup_project() {
         source "$PROJECT_ROOT/src/modules/$file.sh"
     done
     # 隔离实际用户目录；测试不会调用系统 sudo 或安装软件。
+    # shellcheck disable=SC2317 # Bats 用例会在 setup_project 完成后调用此函数。
     as_user() {
         env HOME="$TARGET_HOME" XDG_CONFIG_HOME="$TARGET_HOME/.config" XDG_STATE_HOME="$TARGET_HOME/.local/state" "$@"
     }
